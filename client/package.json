@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
+    "axios": "^1.12.2",
     "classnames": "^2.5.1",
     "lucide-react": "^0.544.0",
     "primeflex": "^4.0.0",
@@ -18,6 +19,7 @@
     "primereact": "^10.9.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-router-dom": "^6.30.1",
     "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
