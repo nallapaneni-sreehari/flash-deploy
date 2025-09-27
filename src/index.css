@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.css';
+
+* {
+  font-family: 'Outfit', sans-serif;
+}
+
+.h-fit-screen {
+  height: calc(100vh - 160px);
+}
+
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+}
+
+/* Modern pleasant background for PrimeReact Card - light and dark mode */
+.p-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%) !important;
+  border: none !important;
+}
+.dark .p-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
+
+/* Apply modern gradient background to TopNavBar and SideNav in both light and dark mode */
+.p-menubar, .p-menubar, .p-menu, .p-menubar-root-list, .p-dialog {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%) !important;
+}
+.dark .p-menubar, .dark .p-menubar .p-menubar-root-list, .dark .p-menu, .dark .p-dialog {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
