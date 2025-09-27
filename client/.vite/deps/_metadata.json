@@ -1,0 +1,115 @@
+{
+  "hash": "f47470c2",
+  "configHash": "baef5b79",
+  "lockfileHash": "997b4d8f",
+  "browserHash": "f3c49c95",
+  "optimized": {
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "17bb7f9a",
+      "needsInterop": false
+    },
+    "primereact/avatar": {
+      "src": "../../node_modules/primereact/avatar/avatar.esm.js",
+      "file": "primereact_avatar.js",
+      "fileHash": "d941adc5",
+      "needsInterop": false
+    },
+    "primereact/badge": {
+      "src": "../../node_modules/primereact/badge/badge.esm.js",
+      "file": "primereact_badge.js",
+      "fileHash": "09faf164",
+      "needsInterop": false
+    },
+    "primereact/button": {
+      "src": "../../node_modules/primereact/button/button.esm.js",
+      "file": "primereact_button.js",
+      "fileHash": "2843a9f0",
+      "needsInterop": false
+    },
+    "primereact/card": {
+      "src": "../../node_modules/primereact/card/card.esm.js",
+      "file": "primereact_card.js",
+      "fileHash": "36d2e3c0",
+      "needsInterop": false
+    },
+    "primereact/dialog": {
+      "src": "../../node_modules/primereact/dialog/dialog.esm.js",
+      "file": "primereact_dialog.js",
+      "fileHash": "4dc2ddad",
+      "needsInterop": false
+    },
+    "primereact/menu": {
+      "src": "../../node_modules/primereact/menu/menu.esm.js",
+      "file": "primereact_menu.js",
+      "fileHash": "e64bd624",
+      "needsInterop": false
+    },
+    "primereact/menubar": {
+      "src": "../../node_modules/primereact/menubar/menubar.esm.js",
+      "file": "primereact_menubar.js",
+      "fileHash": "01257f70",
+      "needsInterop": false
+    },
+    "primereact/message": {
+      "src": "../../node_modules/primereact/message/message.esm.js",
+      "file": "primereact_message.js",
+      "fileHash": "498cc488",
+      "needsInterop": false
+    },
+    "primereact/overlaypanel": {
+      "src": "../../node_modules/primereact/overlaypanel/overlaypanel.esm.js",
+      "file": "primereact_overlaypanel.js",
+      "fileHash": "32122616",
+      "needsInterop": false
+    },
+    "primereact/progressspinner": {
+      "src": "../../node_modules/primereact/progressspinner/progressspinner.esm.js",
+      "file": "primereact_progressspinner.js",
+      "fileHash": "44402d1f",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "70a754e5",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "4d55dd9e",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-4DDBHNNH": {
+      "file": "chunk-4DDBHNNH.js"
+    },
+    "chunk-RMM3HBNV": {
+      "file": "chunk-RMM3HBNV.js"
+    },
+    "chunk-ARTFTFPT": {
+      "file": "chunk-ARTFTFPT.js"
+    },
+    "chunk-SWWS3P2N": {
+      "file": "chunk-SWWS3P2N.js"
+    },
+    "chunk-7HHJM35M": {
+      "file": "chunk-7HHJM35M.js"
+    },
+    "chunk-JJSCUBFW": {
+      "file": "chunk-JJSCUBFW.js"
+    },
+    "chunk-VMXLVPMQ": {
+      "file": "chunk-VMXLVPMQ.js"
+    },
+    "chunk-AO4W26WR": {
+      "file": "chunk-AO4W26WR.js"
+    },
+    "chunk-H3AANLML": {
+      "file": "chunk-H3AANLML.js"
+    }
+  }
+}

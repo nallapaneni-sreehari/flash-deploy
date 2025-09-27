@@ -55,14 +55,14 @@ export default function TopNavBar({ setTheme: setThemeProp }) {
       switch (theme) {
         case "light":
           document.documentElement.classList.remove("dark");
-          existingLink.href = "public/themes/nova-accent/theme.css";
+          existingLink.href = "/themes/nova-accent/theme.css";
           break;
         case "dark":
           document.documentElement.classList.add("dark");
-          existingLink.href = "public/themes/vela-blue/theme.css";
+          existingLink.href = "/themes/vela-blue/theme.css";
           break;
         default:
-          existingLink.href = "public/themes/nova-accent/theme.css";
+          existingLink.href = "/themes/nova-accent/theme.css";
       }
     }
     setThemeProp(theme);
@@ -71,7 +71,7 @@ export default function TopNavBar({ setTheme: setThemeProp }) {
   const start = (
     <div className="flex items-center gap-2">
       <i className="pi pi-briefcase text-xl text-primary"></i>
-      <span className="font-bold text-lg">TMS</span>
+      <span className="font-bold text-lg">FlashDeploy</span>
     </div>
   );
 
