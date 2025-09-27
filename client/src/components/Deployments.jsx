@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
+import DeploymentsTable from "./DeploymentsTable";
 
 const Deployments = () => {
   const [visible, setVisible] = useState(false);
@@ -53,20 +54,24 @@ const Deployments = () => {
   };
 
   return (
-    <div className="flex justify-end">
-      <Button
-        label=""
-        icon="pi pi-plus"
-        onClick={() => setVisible(true)}
-        className="md:hidden"
-      />
-      <Button
-        label="Create a deployment"
-        icon="pi pi-plus"
-        onClick={() => setVisible(true)}
-        className="hidden md:block"
-      />
-
+    <div className="flex flex-col gap-4">
+      <div className="flex justify-end">
+        <Button
+          label=""
+          icon="pi pi-plus"
+          onClick={() => setVisible(true)}
+          className="md:hidden"
+        />
+        <Button
+          label="Create a deployment"
+          icon="pi pi-plus"
+          onClick={() => setVisible(true)}
+          className="hidden md:block"
+        />
+      </div>
+      <div>
+        <DeploymentsTable />
+      </div>
       <Dialog
         header="Create Deployment"
         visible={visible}

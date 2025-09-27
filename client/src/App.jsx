@@ -27,7 +27,7 @@ function App() {
           collapsed={sideNavCollapsed}
           setCollapsedSideNav={setSideNavCollapsed}
         />
-        <Card className="!rounded-lg flex-1">
+        <Card className="!rounded-lg flex-1 px-4">
           {/* This is where nested routes render */}
           <Outlet />
         </Card>

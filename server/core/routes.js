@@ -21,17 +21,13 @@ router.post("/deploy", async (req, res) => {
   // Ensure output folder exists
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
-  // Set headers for streaming logs
-  res.setHeader("Content-Type", "text/plain; charset=utf-8");
-  res.setHeader("Transfer-Encoding", "chunked");
-
   function log(msg) {
     console.log(msg);
-    res.write(msg + "\n");
   }
 
   try {
     log(`🚀 Starting build for ${project_name}`);
+    res.staus(200).json({ message: "Deployment started" });
 
     await dockerBuild(git_url, project_name, imageTag, log);
     const containerId = await dockerCreate(imageTag, log);
@@ -39,10 +35,9 @@ router.post("/deploy", async (req, res) => {
     await dockerCleanup(containerId, imageTag, log);
 
     log(`✅ Deployment completed successfully for ${project_name}`);
-    res.end();
   } catch (err) {
     log(`❌ Deployment failed: ${err.message}`);
-    res.end();
+    res.status(500).json({ error: "Deployment failed", details: err.message });
   }
 });
 

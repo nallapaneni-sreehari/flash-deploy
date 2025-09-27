@@ -55,14 +55,14 @@ export default function TopNavBar({ setTheme: setThemeProp }) {
       switch (theme) {
         case "light":
           document.documentElement.classList.remove("dark");
-          existingLink.href = "/themes/nova-accent/theme.css";
+          existingLink.href = "/themes/lara-light-blue/theme.css";
           break;
         case "dark":
           document.documentElement.classList.add("dark");
           existingLink.href = "/themes/vela-blue/theme.css";
           break;
         default:
-          existingLink.href = "/themes/nova-accent/theme.css";
+          existingLink.href = "/themes/lara-light-blue/theme.css";
       }
     }
     setThemeProp(theme);

@@ -22,14 +22,55 @@ body {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%) !important;
   border: none !important;
 }
+
 .dark .p-card {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
 }
 
 /* Apply modern gradient background to TopNavBar and SideNav in both light and dark mode */
-.p-menubar, .p-menubar, .p-menu, .p-menubar-root-list, .p-dialog {
+.p-menubar,
+.p-menubar,
+.p-menu,
+.p-menubar-root-list,
+.p-dialog {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%) !important;
 }
-.dark .p-menubar, .dark .p-menubar .p-menubar-root-list, .dark .p-menu, .dark .p-dialog {
+
+.dark .p-menubar,
+.dark .p-menubar .p-menubar-root-list,
+.dark .p-menu,
+.dark .p-dialog {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
+
+/* Apply modern gradient background to TopNavBar and SideNav in both light and dark mode */
+
+.p-datatable {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 24px 0 rgba(30,41,59,0.08), 0 1.5px 6px 0 rgba(30,41,59,0.04) !important;
+  border: none !important;
+  padding: 1rem !important;
+}
+.p-datatable .p-datatable-thead > tr > th,
+.p-datatable .p-datatable-tbody > tr > td {
+  background: transparent !important;
+  border: none !important;
+}
+.p-datatable .p-datatable-tbody > tr {
+  border-radius: 0.75rem !important;
+}
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: rgba(224,231,255,0.25) !important;
+}
+.dark .p-datatable {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  box-shadow: 0 4px 24px 0 rgba(30,41,59,0.18), 0 1.5px 6px 0 rgba(30,41,59,0.10) !important;
+}
+.dark .p-datatable .p-datatable-tbody > tr:hover {
+  background: rgba(51,65,85,0.25) !important;
+}
+
+.dark .p-datatable, .dark .p-datatable, .dark .p-datatable-selectable, .dark .p-paginator-bottom, .dark .p-paginator {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
 }
