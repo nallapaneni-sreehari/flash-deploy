@@ -16,7 +16,7 @@ router.post("/deploy", async (req, res) => {
   }
 
   const imageTag = `flashdeploy-${project_name}-${randomUUID().slice(0, 6)}`;
-  const outputDir = path.join(__dirname, "../../projects", project_name);
+  const outputDir = path.join(__dirname, "../../projects", project_name.replace('-', ''));
 
   // Ensure output folder exists
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
