@@ -5,7 +5,7 @@ const { coreRouter } = require("./core/routes");
 
 const app = express();
 // const port = process.env.PORT || 3000;
-const port = 6000;
+const port = 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
