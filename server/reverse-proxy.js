@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const PORT = 8000;
+const PORT = 6001;
 
 const BASE_PATH = path.join(__dirname, "../", "projects");
 
