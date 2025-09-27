@@ -12,8 +12,13 @@ app.use((req, res, next) => {
   const hostname = req.hostname; // e.g., project1-flashdeploy.iamsreehari.in
   const subdomain = hostname.split(".")[0];
 
-  const projectPath = path.join(BASE_PATH, subdomain, "dist");
+  const subProjectPath = path.join(BASE_PATH, subdomain);
+  let projectPath = path.join(subProjectPath, "dist");
 
+  if (!fs.existsSync(projectPath)) {
+    projectPath = path.join(subProjectPath, "build");
+  }
+  
   console.log(`projectPath ::: `, projectPath);
   if (!fs.existsSync(projectPath)) {
     return res.status(404).send("Project not found");

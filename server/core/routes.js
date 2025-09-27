@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 router.post("/deploy", async (req, res) => {
-  const { git_url, project_name } = req.body;
+  const { git_url, project_name, build_folder } = req.body;
 
   if (!git_url || !project_name) {
     return res
@@ -35,7 +35,7 @@ router.post("/deploy", async (req, res) => {
 
     await dockerBuild(git_url, project_name, imageTag, log);
     const containerId = await dockerCreate(imageTag, log);
-    await dockerCopy(containerId, project_name, outputDir, log);
+    await dockerCopy(containerId, project_name, outputDir, log, build_folder);
     await dockerCleanup(containerId, imageTag, log);
 
     log(`✅ Deployment completed successfully for ${project_name}`);
@@ -95,9 +95,18 @@ async function dockerCreate(imageTag, log) {
 }
 
 // Copy built files from container to host
-async function dockerCopy(containerId, project_name, outputDir, log) {
+async function dockerCopy(
+  containerId,
+  project_name,
+  outputDir,
+  log,
+  build_folder = null
+) {
   log("📂 Copying build files to host...");
-  const buildFolder = "dist"; // or 'build' depending on framework
+  const buildFolder =
+    build_folder ?? fs.existsSync(path.join(outputDir, "dist"))
+      ? "dist"
+      : "build";
   await runDockerCommand(
     ["cp", `${containerId}:/app/${project_name}/${buildFolder}`, outputDir],
     log
