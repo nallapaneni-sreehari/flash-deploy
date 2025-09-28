@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import DeploymentsTable from "./DeploymentsTable";
+import { useUser } from "@clerk/clerk-react";
 
 const Deployments = () => {
   const [visible, setVisible] = useState(false);
@@ -10,6 +12,9 @@ const Deployments = () => {
   const [projectName, setProjectName] = useState("");
   const [projectNameError, setProjectNameError] = useState("");
   const [gitUrlError, setGitUrlError] = useState("");
+
+  const navigate = useNavigate();
+  const { user } = useUser();
 
   const handleProceed = async () => {
     let valid = true;
@@ -33,6 +38,8 @@ const Deployments = () => {
       const payload = {
         git_url: gitUrl,
         project_name: projectName,
+        id: user.id,
+        email: user.primaryEmailAddress?.emailAddress
       };
       const { requestDeployment } = await import("../services/core");
       const response = await requestDeployment(payload);
@@ -40,6 +47,8 @@ const Deployments = () => {
       setGitUrl("");
       setProjectName("");
       console.log("Deployment response:", response.data);
+      // Navigate to deployments/project_name after success
+      navigate(`/deployments/${projectName}`);
     } catch (err) {
       console.error("Deployment error:", err);
     }

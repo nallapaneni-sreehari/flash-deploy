@@ -13,10 +13,10 @@ app.use((req, res, next) => {
   const subdomain = hostname.split(".")[0];
 
   const subProjectPath = path.join(BASE_PATH, subdomain);
-  let projectPath = path.join(subProjectPath, "dist");
+  let projectPath = path.join(subProjectPath, "output");
 
   if (!fs.existsSync(projectPath)) {
-    projectPath = path.join(subProjectPath, "build");
+    projectPath = path.join(subProjectPath, "output");
   }
   
   console.log(`projectPath ::: `, projectPath);

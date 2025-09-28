@@ -8,19 +8,25 @@ import { Moon, Sun, Bell } from "lucide-react";
 import { Menu } from "primereact/menu";
 import { Dialog } from "primereact/dialog";
 import Notifications from "./Notifications";
+import { useTheme } from "../context/ThemeContext";
+import { UserButton } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 
 export default function TopNavBar({ setTheme: setThemeProp }) {
   const opNotifications = useRef(null);
   const opProfile = useRef(null);
 
   const menu = useRef(null);
+  const { user } = useUser();
+  console.log("Current user:", user.id, user.primaryEmailAddress?.emailAddress);
 
-    const [showLogout, setShowLogout] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
   const items = [
     {
       label: "Profile",
       icon: "pi pi-user",
       command: () => console.log("Profile clicked"),
+      template: (item, options) => <UserButton afterSignOutUrl="/" />,
     },
     {
       label: "Settings",
@@ -47,7 +53,7 @@ export default function TopNavBar({ setTheme: setThemeProp }) {
     },
   ];
 
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const existingLink = document.getElementById("theme-css");
@@ -110,39 +116,83 @@ export default function TopNavBar({ setTheme: setThemeProp }) {
       </div>
 
       {/* User Profile */}
-      <div>
-        <Avatar
+      {/* <Avatar
           label="S"
           shape="circle"
           size="large"
           className="cursor-pointer"
           onClick={(e) => menu.current.toggle(e)}
-        />
-        <Menu model={items} popup ref={menu} />
-      </div>
+        /> */}
+      {/* <Menu model={items} popup ref={menu} /> */}
+      <UserButton
+        className="w-6"
+        appearance={{
+          baseTheme: theme === "dark" ? "dark" : "light",
+          variables: {
+            colorBackground: theme === "dark" ? "#1f2937" : "#ffffff",
+            colorText: theme === "dark" ? "#f9fafb" : "#111827",
+          },
+          elements: {
+            userButtonPopoverCard:
+              theme === "dark"
+                ? "bg-gray-800 text-gray-100"
+                : "bg-white text-gray-900",
+          },
+        }}
+        userProfileMode="modal" // ensures it opens as a modal
+        userProfileProps={{
+          appearance: {
+            baseTheme: theme === "dark" ? "dark" : "light",
+            variables: {
+              colorBackground: theme === "dark" ? "#1f2937" : "#ffffff",
+              colorText: theme === "dark" ? "#ffff" : "#111827",
+            },
+            elements: {
+              card:
+                theme === "dark"
+                  ? "bg-gray-800 text-gray-100"
+                  : "bg-white text-gray-900",
+            },
+          },
+        }}
+      />
     </div>
   );
 
   return (
     <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100 }}>
       <Menubar start={start} end={end} className="shadow-md" />
-        <Dialog
-          header="Confirm Logout"
-          visible={showLogout}
-          style={{ width: "350px" }}
-          onHide={() => setShowLogout(false)}
-          footer={
-            <div className="flex justify-end gap-2">
-              <Button label="Cancel" icon="pi pi-times" onClick={() => setShowLogout(false)} className="p-button-text" />
-              <Button label="Logout" icon="pi pi-sign-out" severity="danger" onClick={() => { setShowLogout(false); console.log("User logged out"); }} autoFocus />
-            </div>
-          }
-        >
-          <div className="flex items-center gap-3">
-            <i className="pi pi-sign-out text-2xl text-red-500" />
-            <span>Are you sure you want to logout?</span>
+      <Dialog
+        header="Confirm Logout"
+        visible={showLogout}
+        style={{ width: "350px" }}
+        onHide={() => setShowLogout(false)}
+        footer={
+          <div className="flex justify-end gap-2">
+            <Button
+              label="Cancel"
+              icon="pi pi-times"
+              onClick={() => setShowLogout(false)}
+              className="p-button-text"
+            />
+            <Button
+              label="Logout"
+              icon="pi pi-sign-out"
+              severity="danger"
+              onClick={() => {
+                setShowLogout(false);
+                console.log("User logged out");
+              }}
+              autoFocus
+            />
           </div>
-        </Dialog>
+        }
+      >
+        <div className="flex items-center gap-3">
+          <i className="pi pi-sign-out text-2xl text-red-500" />
+          <span>Are you sure you want to logout?</span>
+        </div>
+      </Dialog>
     </div>
   );
 }

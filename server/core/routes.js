@@ -23,11 +23,16 @@ router.post("/deploy", async (req, res) => {
 
   function log(msg) {
     console.log(msg);
+    // Emit log to all connected clients via socket.io
+    const io = req.app.get("io");
+    if (io) {
+      io.emit(`logs:${project_name}`, { message: msg, project: project_name });
+    }
   }
 
   try {
     log(`🚀 Starting build for ${project_name}`);
-    res.staus(200).json({ message: "Deployment started" });
+    res.status(200).json({ message: "Deployment started" });
 
     await dockerBuild(git_url, project_name, imageTag, log);
     const containerId = await dockerCreate(imageTag, log);
@@ -37,7 +42,7 @@ router.post("/deploy", async (req, res) => {
     log(`✅ Deployment completed successfully for ${project_name}`);
   } catch (err) {
     log(`❌ Deployment failed: ${err.message}`);
-    res.status(500).json({ error: "Deployment failed", details: err.message });
+    // res.status(500).json({ error: "Deployment failed", details: err.message });
   }
 });
 
@@ -103,7 +108,7 @@ async function dockerCopy(
       ? "dist"
       : "build";
   await runDockerCommand(
-    ["cp", `${containerId}:/app/${project_name}/${buildFolder}`, outputDir],
+    ["cp", `${containerId}:/app/output`, outputDir],
     log
   );
   log(`✅ Build files copied to ${outputDir}`);

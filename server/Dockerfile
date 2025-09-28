@@ -14,5 +14,25 @@ WORKDIR /app/$project_name
 # Use legacy OpenSSL provider for Node
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
-# Install deps and build
-RUN npm install --legacy-peer-deps && npm run build
+# Install deps
+RUN if [ -f yarn.lock ] && [ ! -f package-lock.json ]; then \
+      corepack enable && yarn install --frozen-lockfile; \
+    else \
+      npm install --legacy-peer-deps; \
+    fi
+
+# Build project
+RUN if [ -f yarn.lock ]; then \
+      yarn build; \
+    else \
+      npm run build; \
+    fi
+
+# Normalize output into /app/output
+RUN mkdir -p /app/output && \
+    if [ -d build ]; then cp -r build/* /app/output/; fi && \
+    if [ -d dist ]; then cp -r dist/* /app/output/; fi && \
+    # handle Angular's nested dist/<app-name>
+    if [ -d dist ] && [ "$(ls -A dist)" ]; then \
+      find dist -mindepth 1 -maxdepth 1 -type d -exec cp -r {}/. /app/output/ \; ; \
+    fi

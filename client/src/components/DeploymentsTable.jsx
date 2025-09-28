@@ -3,10 +3,12 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { initialDeployments } from "../mocks/deployments";
+import { useTheme } from "../context/ThemeContext";
 
 const DeploymentsTable = () => {
   const [deployments, setDeployments] = useState(initialDeployments);
   const [selectedDeployments, setSelectedDeployments] = useState([]);
+  const { theme, setTheme } = useTheme();
 
   const handleDelete = (rowData) => {
     setDeployments(deployments.filter((d) => d.id !== rowData.id));
@@ -19,6 +21,7 @@ const DeploymentsTable = () => {
 
   const actionBodyTemplate = (rowData) => (
     <div className="flex gap-2">
+      <Button icon="pi pi-external-link" className="p-button-sm" onClick={() => handleRetrigger(rowData)} tooltip="Live Project" />
       <Button icon="pi pi-refresh" className="p-button-sm" onClick={() => handleRetrigger(rowData)} tooltip="Re-trigger" />
       <Button icon="pi pi-trash" className="p-button-sm p-button-danger" onClick={() => handleDelete(rowData)} tooltip="Delete" />
     </div>
@@ -33,7 +36,7 @@ const DeploymentsTable = () => {
         onSelectionChange={(e) => setSelectedDeployments(e.value)}
         dataKey="id"
         paginator
-        rows={5}
+        rows={theme === "dark" ? 7 : 5}
         size="small"
         sortMode="multiple"
         filterDisplay="menu"

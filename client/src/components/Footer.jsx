@@ -6,7 +6,7 @@ export default function Footer() {
       <Card className="!rounded-none !shadow-none " style={{ margin: 0 }}>
         <div className="flex items-center justify-between text-sm ">
           <span>&copy; {new Date().getFullYear()} FlashDeploy. All rights reserved.</span>
-          <span>Powered by PrimeReact</span>
+          <span>Powered by FlashDeploy</span>
         </div>
       </Card>
     </footer>

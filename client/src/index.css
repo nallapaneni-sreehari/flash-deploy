@@ -57,11 +57,26 @@ body {
   background: transparent !important;
   border: none !important;
 }
-.p-datatable .p-datatable-tbody > tr {
+/* Apply body background to datatable rows in light mode */
+.p-datatable .p-datatable-tbody > tr, .p-paginator {
   border-radius: 0.75rem !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%) !important;
 }
 .p-datatable .p-datatable-tbody > tr:hover {
   background: rgba(224,231,255,0.25) !important;
+}
+
+/* Apply body background to datatable rows in dark mode */
+.dark .p-datatable .p-datatable-tbody > tr {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
+.dark .p-paginator {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  margin-top: 5px !important ;
+}
+
+.dark .p-datatable .p-datatable-tbody > tr:hover {
+  background: rgba(51,65,85,0.25) !important;
 }
 .dark .p-datatable {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;

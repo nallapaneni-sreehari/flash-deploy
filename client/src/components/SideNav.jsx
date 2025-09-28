@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Menu } from "primereact/menu";
 import { Button } from "primereact/button";
+import { useNavigate } from "react-router-dom";
 
 export default function SideNav({ sideNavCollapsed, setCollapsedSideNav }) {
   const [collapsed, setCollapsed] = useState(sideNavCollapsed);
+  const navigate = useNavigate();
 
   const items = [
     {
@@ -13,6 +15,7 @@ export default function SideNav({ sideNavCollapsed, setCollapsedSideNav }) {
         setCollapsed((c) => !c);
         setCollapsedSideNav(!collapsed);
       },
+
       template: (item, options) => (
         <Button
           text
@@ -48,7 +51,9 @@ export default function SideNav({ sideNavCollapsed, setCollapsedSideNav }) {
     {
       label: "Deployments",
       // icon: "pi pi-wave-pulse",
-      command: () => console.log("Tickets clicked"),
+      command: () => {
+        navigate("/deployments");
+      },
       template: (item, options) => (
         <Button
           text
@@ -61,7 +66,7 @@ export default function SideNav({ sideNavCollapsed, setCollapsedSideNav }) {
           <i className={`${item.icon} mr-2`} />
           {item.label}
         </Button>
-      )
+      ),
     },
     {
       label: "Log Management",
@@ -79,7 +84,7 @@ export default function SideNav({ sideNavCollapsed, setCollapsedSideNav }) {
           <i className={`${item.icon} mr-2`} />
           {item.label}
         </Button>
-      )
+      ),
     },
     {
       label: "Reports",
@@ -97,7 +102,7 @@ export default function SideNav({ sideNavCollapsed, setCollapsedSideNav }) {
           <i className={`${item.icon} mr-2`} />
           {item.label}
         </Button>
-      )
+      ),
     },
   ];
 
