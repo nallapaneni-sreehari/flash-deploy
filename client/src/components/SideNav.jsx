@@ -9,7 +9,7 @@ export default function SideNav({ sideNavCollapsed, setCollapsedSideNav }) {
 
   const items = [
     {
-      label: "Collapse",
+      label: " ",
       // icon: `pi ${collapsed ? "pi-bars" : "pi-arrow-left"}`,
       command: () => {
         setCollapsed((c) => !c);
